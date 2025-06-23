@@ -63,11 +63,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link @yield('navhome')" href="/">Home</a>
+                            <a class="nav-link @yield('navhome')" href="/list-product">Home</a>
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link @yield('navInmov')" href="/store/create/">Add Store</a>
+                            <a class="nav-link @yield('navstore')" href="/list-store">Add Store</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @yield('navInmov')" href="/product/create/">Add Product</a>
