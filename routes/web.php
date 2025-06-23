@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureUserIsSeller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,5 +25,13 @@ Route::get('/list-store', [StoreController::class, 'index'])-> name('store.index
 Route::post('/store', [StoreController::class, 'store'])->name('store.store')->middleware('auth',EnsureUserIsSeller::class);
 
 Route::get('/store/home', [StoreController::class, 'home'])->name('store.home');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login');
+})->name('logout');
 
 
