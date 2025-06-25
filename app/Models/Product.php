@@ -16,4 +16,18 @@ class Product extends Model
         return $this->belongsTo(Store::class, 'store_id', 'id');
     }
 
+    public function category():BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'kategori', 'id');
+    }
+    protected $fillable = [
+        'nama_produk',
+        'deskripsi',
+        'harga',
+        'stok',
+        'gambar',
+        'kategori',
+        'store_id',
+    ];
+
 }

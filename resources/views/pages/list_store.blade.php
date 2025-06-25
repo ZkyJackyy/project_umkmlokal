@@ -49,9 +49,9 @@
                 <img src="{{ asset('storage/' . $store->logo) }}" class="card-img-top" alt="{{ $store->nama_toko }}">
                 <div class="card-body">
                     <h5 class="card-title" style="font-size: 30px">{{ $store->nama_toko }}</h5>
-                    <p class="card-text">{{ Str::limit($store->deskripsi, 80, '...') }}</p>
+                    {{-- <p class="card-text">{{ Str::limit($store->deskripsi, 80, '...') }}</p>
                     <p class="card-text"><strong>Alamat:</strong> {{ $store->alamat }}</p>
-                    <p class="card-text"><strong>Status:</strong> {{ $store->status }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ $store->status }}</p> --}}
                 </div>
                 <div class="card-footer bg-white border-0 text-end">
                     <a href="/store/home" class="btn btn-success btn-order">Open Store</a>

@@ -34,4 +34,6 @@ Route::post('/logout', function () {
     return redirect('/login');
 })->name('logout');
 
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create')->middleware('auth',EnsureUserIsSeller::class);
+Route::post('/products', [ProductController::class, 'store'])->name('product.store');
 

@@ -61,9 +61,9 @@
             <img src="{{ asset('storage/' . $product->gambar) }}" class="card-img-top" alt="{{ $product->nama_produk }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $product->nama_produk }}</h5>
-                <p class="card-text">{{ Str::limit($product->deskripsi, 80, '...') }}</p>
+                {{-- <p class="card-text">{{ Str::limit($product->deskripsi, 80, '...') }}</p> --}}
                 <p class="card-text"><strong>Harga:</strong> Rp{{ number_format($product->harga, 0, ',', '.') }}</p>
-                <p class="card-text"><strong>Kategori:</strong> {{ $product->category->category_name }}</p>
+                {{-- <p class="card-text"><strong>Kategori:</strong> {{ $product->category->category_name }}</p> --}}
                 <p class="card-text"><strong>Stok:</strong> {{ $product->stok }}</p>
             </div>
             <div class="card-footer bg-white border-0 text-end">

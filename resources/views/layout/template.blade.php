@@ -67,10 +67,10 @@
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link @yield('navstore')" href="/list-store">Add Store</a>
+                            <a class="nav-link @yield('navstore')" href="/list-store">Store</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('navInmov')" href="/product/create/">Add Product</a>
+                            <a class="nav-link @yield('navInmov')" href="/product/create/">Product</a>
                         </li>
                         @else
                         <li class="nav-item">
