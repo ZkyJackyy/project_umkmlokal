@@ -21,10 +21,10 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/list-product',[ProductController::class, 'index'])-> name('products.index')->middleware('auth');
 
 Route::get('/store/create', [StoreController::class, 'create'])->name('store.create')->middleware('auth',EnsureUserIsSeller::class);
-Route::get('/list-store', [StoreController::class, 'index'])-> name('store.index')->middleware('auth',EnsureUserIsSeller::class);
+// Route::get('/list-store', [StoreController::class, 'index'])-> name('store.index')->middleware('auth',EnsureUserIsSeller::class);
 Route::post('/store', [StoreController::class, 'store'])->name('store.store')->middleware('auth',EnsureUserIsSeller::class);
 
-Route::get('/store/home', [StoreController::class, 'home'])->name('store.home');
+Route::get('/store/home', [StoreController::class, 'home'])->name('store.home')->middleware('auth',EnsureUserIsSeller::class);
 
 Route::post('/logout', function () {
     Auth::logout();

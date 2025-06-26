@@ -56,6 +56,6 @@ class ProductController extends Controller
             'kategori'    => $validated['kategori'],
         ]);
 
-        return redirect()->route('store.home')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('store.home', $store->id)->with('success', 'Produk berhasil ditambahkan.');
     }
 }

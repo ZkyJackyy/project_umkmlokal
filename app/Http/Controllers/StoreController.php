@@ -8,12 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
-    public function index()
-    {
-        $stores = Store::where('user_id', Auth::user()->id)->get();
-        return view('pages.list_store', compact('stores'));
-    }
-
     public function create()
     {
         return view('pages.form_add_store');
@@ -38,7 +32,7 @@ class StoreController extends Controller
 
     Store::create($data);
 
-    return redirect()->route('products.index')->with('success', 'Toko berhasil dibuat.');
+    return redirect()->route('store.home')->with('success', 'Toko berhasil dibuat.');
 }
 
     public function home()
