@@ -39,7 +39,7 @@
 </style>
 
 <div class="row justify-content-center mt-5 mb-5">
-    <div class="col-md-8 col-lg-6">
+    <div class="col-md-12 col-lg-10">
         <div class="glass-card">
             <h2>Tambah Store Baru</h2>
             <form action="{{ route('store.store') }}" method="POST" enctype="multipart/form-data">

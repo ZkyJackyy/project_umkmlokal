@@ -90,7 +90,7 @@
 
     {{-- Produk --}}
     @if($store->products->count())
-        <h3 class="fw-bold mb-4 text-center">🛍️ Produk Toko</h3>
+        <h3 class="fw-bold mb-4 text-center">Produk Toko</h3>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach($store->products as $product)
                 <div class="col">
@@ -103,12 +103,12 @@
                             <p class="card-text text-muted">Rp {{ number_format($product->harga, 0, ',', '.') }}</p>
                             <p class="card-text"><small class="text-muted">Stok: {{ $product->stok }}</small></p>
                             <div class="action-buttons mt-3">
-                                <a href="" class="btn btn-outline-primary btn-sm btn-edit">✏️ Edit</a>
+                                <a href="/product/{{ $product->id }}/edit" class="btn btn-outline-primary btn-sm btn-edit">Edit</a>
 
-                                <form action="" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+                                <form action="/product/{{ $product->id }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                                     @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm btn-delete">🗑️ Delete</button>
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm btn-delete">Delete</button>
                                 </form>
                             </div>
                         </div>

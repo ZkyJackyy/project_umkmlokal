@@ -36,4 +36,7 @@ Route::post('/logout', function () {
 
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create')->middleware('auth',EnsureUserIsSeller::class);
 Route::post('/products', [ProductController::class, 'store'])->name('product.store');
+Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('edit.product')->middleware('auth',EnsureUserIsSeller::class);
+Route::put('/product/{id}', [ProductController::class, 'update'])->name('update.product')->middleware('auth',EnsureUserIsSeller::class);
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('delete.product')->middleware('auth',EnsureUserIsSeller::class);
 
