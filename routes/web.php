@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\EnsureUserIsSeller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ProductController;
+use App\Http\Middleware\EnsureUserIsSeller;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,4 +41,13 @@ Route::post('/products', [ProductController::class, 'store'])->name('product.sto
 Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('edit.product')->middleware('auth',EnsureUserIsSeller::class);
 Route::put('/product/{id}', [ProductController::class, 'update'])->name('update.product')->middleware('auth',EnsureUserIsSeller::class);
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('delete.product')->middleware('auth',EnsureUserIsSeller::class);
+
+Route::get('/orders', [OrderController::class,'index'])->name('order.index')->middleware('auth', RoleMiddleware::class);
+Route::get('/orders/create/{product}', [OrderController::class,'create'])->name('orders.create')-> middleware('auth', RoleMiddleware::class);
+Route::post('/orders', [OrderController::class,'store'])->name('orders.store')-> middleware('auth', RoleMiddleware::class);
+
+Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index')->middleware('auth', EnsureUserIsSeller::class);
+Route::put('/admin/orders/{order}/accept', [OrderController::class, 'accept'])->name('orders.accept')-> middleware('auth', EnsureUserIsSeller::class);
+Route::put('/admin/orders/{order}/reject', [OrderController::class, 'reject'])->name('orders.reject')-> middleware('auth', EnsureUserIsSeller::class);
+
 

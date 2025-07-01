@@ -1,6 +1,7 @@
 @extends('layout.template')
 
 @section('title', 'Form Add Product')
+@section('navproduct', 'active')
 
 @section('container')
 

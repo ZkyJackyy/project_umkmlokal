@@ -70,8 +70,18 @@
                             <a class="nav-link @yield('navstore')" href="/store/home">Store</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('navInmov')" href="/product/create/">Product</a>
+                            <a class="nav-link @yield('navproduct')" href="/product/create/">Product</a>
                         </li>
+                        @if(auth()->user()->role !== 'saller')
+                        <li class="nav-item">
+                            <a class="nav-link @yield('navDftr')" href="/orders">pesanan saya</a>
+                        </li>
+                        @endif
+                        @if(auth()->user()->role !== 'customer')
+                        <li class="nav-item">
+                            <a class="nav-link @yield('navList')" href="/admin/orders">daftar pesanan</a>
+                        </li>
+                        @endif
                         @else
                         <li class="nav-item">
                             <a class="nav-link @yield('navLogin')" href="/login">Login</a>
