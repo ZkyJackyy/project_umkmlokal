@@ -33,8 +33,10 @@
                 <td>
                     <span class="badge 
                         @if($order->status == 'pending') bg-warning 
-                        @elseif($order->status == 'diproses') bg-success 
+                        @elseif($order->status == 'diproses') bg-primary 
                         @elseif($order->status == 'dibatalkan') bg-danger 
+                        @elseif($order->status == 'selesai') bg-success 
+                        {{-- @else bg-secondary --}}
                         @endif">
                         {{ ucfirst($order->status) }}
                     </span>

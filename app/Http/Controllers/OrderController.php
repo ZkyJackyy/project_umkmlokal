@@ -59,7 +59,7 @@ class OrderController extends Controller
             $product->decrement('stok', $request->jumlah);
         });
 
-        return redirect()->route('orders.daftar')
+        return redirect()->route('order.index')
             ->with('success','Order berhasil dibuat!');
     }
 
@@ -90,5 +90,19 @@ class OrderController extends Controller
         $order->update(['status' => 'dibatalkan']);
         return redirect()->back()->with('success', 'Pesanan ditolak.');
     }
+
+    public function updateStatus(Order $order)
+{
+    // Pastikan hanya user yang membuat order yang bisa update
+    if (Auth::id() !== $order->user_id) {
+        abort(403);
+    }
+
+    // Ubah status jadi 'selesai'
+    $order->status = 'selesai';
+    $order->save();
+
+    return redirect()->back()->with('success', 'Status pesanan berhasil diperbarui.');
+}
 
 }

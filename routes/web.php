@@ -50,4 +50,5 @@ Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->name('admin
 Route::put('/admin/orders/{order}/accept', [OrderController::class, 'accept'])->name('orders.accept')-> middleware('auth', EnsureUserIsSeller::class);
 Route::put('/admin/orders/{order}/reject', [OrderController::class, 'reject'])->name('orders.reject')-> middleware('auth', EnsureUserIsSeller::class);
 
+Route::put('/orders/update-status/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 

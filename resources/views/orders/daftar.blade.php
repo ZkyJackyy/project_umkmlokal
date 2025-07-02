@@ -10,7 +10,7 @@
     <div class="card mb-3">
         <div class="card-body">
             <h5>
-                Order #{{ $order->id }} — 
+                Order {{ $order->orderItems->first() ? $order->orderItems->first()->product->nama_produk : 'Produk Tidak Diketahui' }} — 
                 <span class="badge 
                     @if($order->status == 'pending') bg-warning
                     @elseif($order->status == 'diproses') bg-primary
@@ -22,7 +22,7 @@
                     {{ ucfirst($order->status) }}
                 </span>
             </h5>
-            <p>Tanggal: {{ $order->tanggal_pemesanan->format('d M Y H:i') }}</p>
+            <p>Tanggal: {{ $order->tanggal_pemesanan->format('d M Y') }}</p>
             <p>Total: Rp {{ number_format($order->total_harga, 0, ',', '.') }}</p>
             <p>Alamat: {{ $order->alamat_pengiriman }}</p>
 
@@ -34,6 +34,13 @@
                 </li>
                 @endforeach
             </ul>
+            @if($order->status === 'diproses')
+                <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST" class="mt-3 text-end">
+                    @csrf
+                    @method('PUT')
+                    <button type="submit" class="btn btn-success btn-sm">Pesanan Diterima</button>
+                </form>
+            @endif
         </div>
     </div>
     @endforeach
