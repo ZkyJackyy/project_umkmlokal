@@ -52,3 +52,5 @@ Route::put('/admin/orders/{order}/reject', [OrderController::class, 'reject'])->
 
 Route::put('/orders/update-status/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/stores/{id}', [StoreController::class, 'showStore'])->name('stores.show');

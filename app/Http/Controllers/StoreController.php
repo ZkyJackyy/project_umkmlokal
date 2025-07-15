@@ -48,4 +48,10 @@ class StoreController extends Controller
 
         return view('pages.home_store', compact('store'));
     }
+    public function showStore($id)
+    {
+        
+        $store = Store::with('products')->findOrFail($id);
+        return view('pages.show_store', compact('store'));
+    }
 }

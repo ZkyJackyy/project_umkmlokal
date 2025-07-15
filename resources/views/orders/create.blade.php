@@ -11,8 +11,7 @@
         <input type="hidden" name="product_id" value="{{ $products->id }}">
 
         <div class="mb-3">
-            <label>Harga</label>
-            <p>Rp {{ number_format($products->harga,0,',','.') }}</p>
+            <label>Harga: <span>Rp {{ number_format($products->harga,0,',','.') }}</span></label>
         </div>
 
         <div class="mb-3">

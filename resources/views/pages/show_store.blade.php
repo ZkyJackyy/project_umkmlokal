@@ -1,7 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Home Toko')
-@section('navstore', 'active')
+@section('title', 'Detail Toko')
 
 @section('container')
 
@@ -39,10 +38,6 @@
         position: relative;
     }
 
-    .product-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
 
     .product-img {
         height: 180px;
@@ -59,38 +54,29 @@
         font-weight: 600;
     }
 
-    .btn-edit,
-    .btn-delete {
-        border-radius: 50px;
+    .btn-order {
+        border-radius: 10px;
         font-size: 14px;
         font-weight: 500;
-        padding: 5px 15px;
-    }
-
-    .action-buttons {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
+        padding: 7px 15px;
     }
 </style>
 
 <div class="container mt-5">
+    {{-- Banner Toko --}}
     <div class="store-header">
-        @if($store->logo)
-            <img src="{{ asset('storage/' . $store->logo) }}" alt="Logo Toko" class="store-logo">
-        @else
-            <p class="text-muted">Logo belum diunggah</p>
+        @if ($store->logo)
+            <img src="{{ asset('storage/' . $store->logo) }}" class="store-logo" alt="Logo Toko">
         @endif
 
         <h2 class="fw-bold mt-4">{{ $store->nama_toko }}</h2>
         <p class="mt-2">{{ $store->deskripsi }}</p>
         <p class="text-muted">{{ $store->alamat }}</p>
-        <a href="/product/create" class="btn btn-sm btn-primary btn-custom mt-2">➕ Tambah Produk</a>
     </div>
 
-    {{-- Produk --}}
+    {{-- Daftar Produk --}}
+    <h3 class="fw-bold mb-4 text-center">Produk dari Toko Ini</h3>
     @if($store->products->count())
-        <h3 class="fw-bold mb-4 text-center">Produk Toko</h3>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach($store->products as $product)
                 <div class="col">
@@ -99,25 +85,17 @@
                             <img src="{{ asset('storage/' . $product->gambar) }}" class="card-img-top product-img" alt="{{ $product->nama_produk }}">
                         @endif
                         <div class="card-body p-4">
-                            <h5 class="card-title">{{ $product->nama_produk }}</h5>
-                            <p class="card-text text-muted">Rp {{ number_format($product->harga, 0, ',', '.') }}</p>
+                            <h5 class="card-title mb-2">{{ $product->nama_produk }}</h5>
+                            <p class="card-text text-muted mb-0">Rp {{ number_format($product->harga, 0, ',', '.') }}</p>
                             <p class="card-text"><small class="text-muted">Stok: {{ $product->stok }}</small></p>
-                            <div class="action-buttons mt-3">
-                                <a href="/product/{{ $product->id }}/edit" class="btn btn-outline-primary btn-sm btn-edit">Edit</a>
-
-                                <form action="/product/{{ $product->id }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm btn-delete">Delete</button>
-                                </form>
-                            </div>
+                            <a href="{{ route('orders.create', $product->id) }}" class="btn btn-success btn-sm btn-order mt-2">Order</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
     @else
-        <p class="text-center mt-4 text-muted">Belum ada produk di toko ini.</p>
+        <p class="text-center text-muted">Toko ini belum memiliki produk.</p>
     @endif
 </div>
 

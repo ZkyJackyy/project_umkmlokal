@@ -8,14 +8,14 @@
 <style>
     .hero {
         position: relative;
-        width: 100%;
-        /* width: 100vw; 
-        margin-left: calc(-50vw + 50%);
-        border-radius: 0; */
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
         height: 400px;
         margin-bottom: 40px;
         overflow: hidden;
-        border-radius: 20px;
     }
 
     .hero::after {
@@ -31,15 +31,24 @@
         z-index: 1;
     }
 
-    .hero h1 {
+    .hero-content {
         position: relative;
         z-index: 2;
         color: white;
-        font-size: 36px;
-        font-weight: bold;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
         text-align: center;
         padding-top: 140px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+        font-weight: bold;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content p {
+        margin-top: 10px;
+        font-size: 18px;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
 
     .card {
@@ -90,7 +99,10 @@
 
 {{-- Hero Section --}}
 <div class="hero">
-    <h1>Selamat Datang di Website UMKM Lokal</h1>
+    <div class="hero-content">
+        <h1>UMKM LOKAL</h1>
+        <p>UMKM Lokal dihadirkan untuk membantu UMKM Indonesia.</p>
+    </div>
 </div>
 
 <h2>Daftar Produk</h2>
@@ -107,7 +119,7 @@
             </div>
             <div class="card-footer bg-white border-0 text-end">
                 <a href="/orders/create/{{ $product->id }}" class="btn btn-success btn-order">Order</a>
-                {{-- <a href="/orders/create/{{ $product->id }}" class="btn btn-info btn-order">Detail</a> --}}
+                <a href="/products/{{ $product->id }}" class="btn btn-outline-primary btn-order">Detail</a>
             </div>
         </div>
     </div>
