@@ -49,10 +49,10 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    .card:hover {
+    /* .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
+    } */
 
     .card img {
         height: 200px;
@@ -76,7 +76,7 @@
 
     .btn-order {
         font-weight: 500;
-        border-radius: 50px;
+        border-radius: 10px;
         padding: 8px 20px;
     }
 
@@ -107,6 +107,7 @@
             </div>
             <div class="card-footer bg-white border-0 text-end">
                 <a href="/orders/create/{{ $product->id }}" class="btn btn-success btn-order">Order</a>
+                {{-- <a href="/orders/create/{{ $product->id }}" class="btn btn-info btn-order">Detail</a> --}}
             </div>
         </div>
     </div>

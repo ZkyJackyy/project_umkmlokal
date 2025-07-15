@@ -67,19 +67,20 @@
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link @yield('navstore')" href="/store/home">Store</a>
+                            <a class="nav-link @yield('navstore')" href="/store/home">Toko</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('navproduct')" href="/product/create/">Product</a>
+                            <a class="nav-link @yield('navproduct')" href="/product/create/">Produk</a>
                         </li>
                         @if(auth()->user()->role !== 'saller')
                         <li class="nav-item">
-                            <a class="nav-link @yield('navDftr')" href="/orders">pesanan saya</a>
+                            <a class="nav-link @yield('navDftr')" href="/orders">Pesanan saya</a>
                         </li>
-                        @endif
-                        @if(auth()->user()->role !== 'customer')
+                        @elseif(auth()->user()->role !== 'customer')
                         <li class="nav-item">
-                            <a class="nav-link @yield('navList')" href="/admin/orders">daftar pesanan</a>
+                            <a class="nav-link @yield('navList')" href="/admin/orders">daftar pesanan
+                                
+                            </a>
                         </li>
                         @endif
                         @else
